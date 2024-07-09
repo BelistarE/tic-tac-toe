@@ -18,13 +18,15 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    text-shadow: 0 0 5px rgba(255, 255, 255, .5);
 }
 .name-form h1{
     font-size: 45px;
     background-color: #4e4e4e7a;
     padding: 10px;
     border-radius: 10px;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.70);
+    text-shadow: 0 0 20px rgba(255, 255, 255, .5);
+    
 }
     
 .name-form button {
@@ -43,6 +45,7 @@
     background-color:#8a8a8a;
     border-radius: 20px;
     padding: 20px;
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
 }
 .player-form input[type=text]{
     font-family: 'Poppins', sans-serif;
@@ -63,6 +66,29 @@
     gap: 1rem;
 }
 
+#start{
+    display: inline-block;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-image: linear-gradient(to right, rgb(233, 120, 120), rgb(233, 188, 105), rgb(207, 207, 103), rgb(97, 172, 97), rgb(99, 149, 196), rgb(204, 136, 204));
+      background-size: 200% auto;
+      color: white;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      transition: background-position 0.5s;
+      color: #414141;
+      font-weight: bold;
+      font-size: 25px;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.30);
+      text-shadow: 0 0 20px rgba(44, 44, 44, 0.5);
+}
+
+#start:hover {
+    background-position: right center;
+    animation: rainbow-animation 2s linear infinite;
+    color: #fff;
+  }
 /*--------------------------------------*/
 
 .player-name{
