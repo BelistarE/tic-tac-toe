@@ -3,6 +3,13 @@ const startButton = document.getElementById('start');
 const playerNameDiv = document.querySelector('.player-name');
 const container = document.getElementById('container');
 const inputFormContainer = document.getElementById('inputFormContainer');
+const headerTag = document.createElement('h1');
+const nameP = document.createElement('p');
+const winnerDiv = document.querySelector('.winner');
+const buttonContainer = document.createElement('div');
+const buttonRestart = document.createElement('button');
+const buttonNewGame = document.createElement('button');
+
 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -79,13 +86,33 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const playerTwoDisplaySymbol = document.querySelector('.symbol2')
   playerTwoDisplaySymbol.textContent = ian.symbol;
+  //didnt work so im putting these here (i know its jank)
+  nameP.textContent = `${beli.name}`
+  nameP.textContent = `${ian.name}`
  }
  
  //gameboard
 
  startButton.addEventListener('click', function() {
+  //for the end
+  winnerDiv.style.display = 'none';
+  buttonContainer.classList.add('button-container');
+  buttonRestart.textContent = 'Restart';
+  buttonNewGame.textContent = 'New Game';
+
+  
+  buttonRestart.addEventListener('click', resetGame);
+  buttonNewGame.addEventListener('click', newGame);
+  
+  winnerDiv.appendChild(headerTag);
+  winnerDiv.appendChild(nameP);
+  buttonContainer.appendChild(buttonRestart);
+  buttonContainer.appendChild(buttonNewGame);
+  winnerDiv.appendChild(buttonContainer);
+
+
   const boxes = document.querySelectorAll('.box');
-  let currentPlayer = 'x';
+  let currentPlayer = beli;
   let board = Array(9).fill(null); //fill an empty array
   
   //function for when the user clicks a box
@@ -103,24 +130,24 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Update the board and DOM
-    board[boxIndex] = currentPlayer;
-    box.textContent = currentPlayer;
+    board[boxIndex] = currentPlayer.symbol;
+    box.textContent = currentPlayer.symbol;
 
     // Check for a win or draw
     if (checkWin()) {
-      setTimeout(() => alert(`${currentPlayer} wins!`), 10);
-      resetGame();
+      //setTimeout(() => alert(`${currentPlayer} wins!`), 10);
+      
+      winner(currentPlayer.symbol);
       return;
     }
-
+    //draw condition
     if (board.every(cell => cell !== null)) {
-      setTimeout(() => alert('Draw!'), 10);
-      resetGame();
+      draw();
       return;
     }
 
     // Switch player
-    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+    currentPlayer = currentPlayer === beli ? ian : beli;
   }
 
   function checkWin() {
@@ -144,7 +171,29 @@ document.addEventListener('DOMContentLoaded', function() {
   function resetGame() {
     board = Array(9).fill(null);
     boxes.forEach(box => box.textContent = '');
-    currentPlayer = 'X';
+    currentPlayer = beli;
+    winnerDiv.style.display = 'none';
+
   }
 });
 
+function draw () {
+  headerTag.textContent = 'The Game is a'
+  nameP.textContent = 'DRAW'
+  winnerDiv.style.display = ''
+}
+
+function winner (sign) {
+  winnerDiv.style.display = ''
+  if (sign === beli.symbol) {
+    headerTag.textContent = 'Winner is'
+    winnerDiv.style.display = ''
+  } else if (sign === ian.symbol) {
+    headerTag.textContent = 'Winner is'
+    winnerDiv.style.display = ''
+  }
+}
+
+function newGame () {
+  location.reload();
+}

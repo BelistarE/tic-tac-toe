@@ -18,7 +18,7 @@
           <h2>Player 1</h2>
           <div class="name-button">
             <label for="player1-input">Name:</label>
-            <input type="text" name="player1-name" id="player1-input" />
+            <input type="text" name="player1-name" id="player1-input"  maxlength="24" />
             <button class="symbol" id="player1-symbol">x</button>
           </div>
           
@@ -28,7 +28,7 @@
             <h2>Player 2</h2>
             <div class="name-button">
               <label for="player2-input">Name:</label>
-              <input type="text" name="player2-name" id="player2-input" />
+              <input type="text" name="player2-name" id="player2-input"  maxlength="24" />
               <button class="symbol" id="player2-symbol">o</button>
             </div>
             
@@ -74,7 +74,7 @@
       <div class="box" data-box="7"></div>
       <div class="box" data-box="8"></div>
     </div>
-    <div class="winner"></div>
+    <div class="winner" style="display: none;"></div>
     <script src="script.js"></script>
   </body>
 </html>

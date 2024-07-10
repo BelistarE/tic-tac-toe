@@ -183,7 +183,6 @@ label{
     transform: translateY(-15px);
 }
 
-
 .box:first-child,
 .box:nth-child(2),
 .box:nth-child(3){
@@ -207,4 +206,27 @@ label{
 .box:nth-child(9){
     border-bottom: none;
     border-top: none;
+}
+
+.winner{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.8);
+    height: 100vh;
+    width: 100vw;
+
+}
+.winner > * {
+    padding: 20px;
+}
+.button-container > *{
+    margin: 20px;
+    height: 40px;
 }
