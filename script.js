@@ -81,3 +81,70 @@ document.addEventListener('DOMContentLoaded', function() {
   playerTwoDisplaySymbol.textContent = ian.symbol;
  }
  
+ //gameboard
+
+ startButton.addEventListener('click', function() {
+  const boxes = document.querySelectorAll('.box');
+  let currentPlayer = 'x';
+  let board = Array(9).fill(null); //fill an empty array
+  
+  //function for when the user clicks a box
+  boxes.forEach(box => {
+    box.addEventListener('click', handleBoxClick);
+  });
+  
+  function handleBoxClick(e) {
+    const box = e.target;
+    const boxIndex = box.getAttribute('data-box');
+
+    // Prevent clicking an already filled box/return out of handleboxclick
+    if (board[boxIndex] !== null) {
+      return;
+    }
+
+    // Update the board and DOM
+    board[boxIndex] = currentPlayer;
+    box.textContent = currentPlayer;
+
+    // Check for a win or draw
+    if (checkWin()) {
+      setTimeout(() => alert(`${currentPlayer} wins!`), 10);
+      resetGame();
+      return;
+    }
+
+    if (board.every(cell => cell !== null)) {
+      setTimeout(() => alert('Draw!'), 10);
+      resetGame();
+      return;
+    }
+
+    // Switch player
+    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+  }
+
+  function checkWin() {
+    const winConditions = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+
+    return winConditions.some(condition => {
+      const [a, b, c] = condition;
+      return board[a] && board[a] === board[b] && board[a] === board[c];
+    });
+  }
+
+  function resetGame() {
+    board = Array(9).fill(null);
+    boxes.forEach(box => box.textContent = '');
+    currentPlayer = 'X';
+  }
+});
+
