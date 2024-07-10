@@ -9,6 +9,7 @@
     justify-content: center;
     align-items: center;
     z-index: 5;
+    transition: transform 1s ease-out, opacity 1s ease-out;
 }
 
 .name-form{
@@ -47,6 +48,13 @@
     padding: 20px;
     box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
 }
+.player-form > h2{
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+label{
+    font-size: 30px;
+}
 .player-form input[type=text]{
     font-family: 'Poppins', sans-serif;
     font-size: 25px;
@@ -64,6 +72,8 @@
 .name-button{
     display: flex;
     gap: 1rem;
+    justify-content: center;
+    align-items: center;
 }
 
 #start{
@@ -89,6 +99,16 @@
     animation: rainbow-animation 2s linear infinite;
     color: #fff;
   }
+
+  .input-form-container.hidden {
+    transform: translateY(-100%); 
+    opacity: 0; 
+  }
+  .symbol:hover{
+    background-color: #414141;
+    color: white;
+  }
+
 /*--------------------------------------*/
 
 .player-name{
